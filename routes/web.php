@@ -8,6 +8,7 @@ Route::get('/', function () {
 })->name('login');
 
 Route::put('/cadastro', [UserController::class,'createUser']);
+Route::put('/login', [UserController::class,'checkUser']);
 
 Route::get('/cadastro', function () {
     return view('cadastro');
