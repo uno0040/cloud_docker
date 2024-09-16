@@ -44,4 +44,22 @@ class UserController extends Controller
 
 
     // }
+
+    public function checkUser(Request $request) {
+        $validated = $request->validate([
+            'username' => 'required|string|max:255',
+            'password' => 'required|string|max:255'
+        ]);
+        // Verifica se o usuário já existe
+        $user = User::where('username', '=', $validated['username'])->first();
+
+        if ($user === null) {
+            return response()->json(['message' => 'Erro no login.'], 401);
+        } else {
+            if ($user->password === $validated['password']) {
+                return response()->json(['message' => 'Usuário encontrado. Credenciais autenticadas.'], 200);
+            }
+            return response()->json(['message' => 'Erro no login.'], 401);
+        }
+    }
 }
