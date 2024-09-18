@@ -11,7 +11,7 @@
         <div class="login-form">
             <div class="sign-in">
                 <h2>Sign In</h2>
-                <form action="{{ route('cadastro') }}" method="POST">
+                <form action="{{ url('/login') }}" method="POST">
                     @csrf
                     <div class="input-group">
                         <input type="text" name="username" placeholder="Username" required />

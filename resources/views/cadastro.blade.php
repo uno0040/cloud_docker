@@ -11,7 +11,7 @@
         <div class = "cadastro-form">
             <div class = "sign-up">
                 <h2>Sign Up</h2>
-                <form action="{{ route('login') }}" method="Post">
+                <form action="{{ route('signup') }}" method="POST">
                     @csrf
                     <div class="input-group">
                         <input type="text" name="username" placeholder="Username" required />
@@ -22,8 +22,8 @@
                     <div class="input-group">
                         <input type="email" name="email" placeholder="Email" required />
                     </div>
-                    <a href="/" class="btn">Sign Up</a>
-                </form> 
+                    <button type="submit" class="btn">Sign Up</button>
+                </form>
             </div>
         </div>
     </div>

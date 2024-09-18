@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use App\Models\Card;
 class UserController extends Controller
 {
     /**
@@ -15,6 +15,7 @@ class UserController extends Controller
     public function createUser(Request $request) {
         $validated = $request->validate([
             'username' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
             'password' => 'required|string|max:255'
         ]);
 
@@ -27,7 +28,7 @@ class UserController extends Controller
 
             // Cria o usuário
             User::create($validated);
-
+            // return view('home');
             return response()->json(['message' => 'Usuário criado com sucesso.'], 200);
         } else {
             return response()->json(['message' => 'Usuário já existente. Faça login.'], 409);
@@ -57,7 +58,9 @@ class UserController extends Controller
             return response()->json(['message' => 'Erro no login.'], 401);
         } else {
             if ($user->password === $validated['password']) {
-                return response()->json(['message' => 'Usuário encontrado. Credenciais autenticadas.'], 200);
+                // return response()->json(['message' => 'Usuário encontrado. Credenciais autenticadas.'], 200);
+                $cards = Card::all();
+                return view('home', ['cards' => $cards]);
             }
             return response()->json(['message' => 'Erro no login.'], 401);
         }
