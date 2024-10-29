@@ -8,6 +8,7 @@ services:
       context: ./
       dockerfile: .docker/Dockerfile
     image: laravel
+    user: "0:0"
     container_name: app
     restart: unless-stopped
     working_dir: /var/www/
